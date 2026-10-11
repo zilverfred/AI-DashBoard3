@@ -21,21 +21,11 @@ jobs:
 
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
+      with:
+        gradle-version: '8.7'
 
-    - name: Check Repository Files and Build
-      run: |
-        echo "=== Listing files in root directory ==="
-        ls -la
-        
-        echo "=== Listing files in app directory if exists ==="
-        if [ -d "app" ]; then
-          ls -la app
-        else
-          echo "WARNING: 'app' directory is missing!"
-        fi
-
-        # اجرای بیلد
-        gradle assembleDebug --no-daemon
+    - name: Build Debug APK with Stacktrace
+      run: gradle assembleDebug --stacktrace --no-daemon
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
