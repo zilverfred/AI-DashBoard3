@@ -19,20 +19,16 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v3
-
-    - name: Build Debug APK
-      # اگر نام پوشه شما چیز دیگری است، به جای AI-DashBoard3 نام آن را بنویسید
-      working-directory: .
+    - name: Auto-generate Gradle Wrapper if missing
       run: |
-        if [ -f "settings.gradle.kts" ] || [ -f "settings.gradle" ]; then
-          gradle assembleDebug
-        else
-          # اگر کدها داخل پوشه فرعی هستند به آن پوشه رفته و اجرا می‌کند
-          cd $(find . -maxdepth 2 -name "settings.gradle.kts" -o -name "settings.gradle" | xargs -I {} dirname {})
-          gradle assembleDebug
+        if [ ! -f "gradlew" ]; then
+          echo "Gradle wrapper not found, generating wrapper..."
+          gradle wrapper
         fi
+        chmod +x gradlew
+
+    - name: Build Debug APK with Wrapper
+      run: ./gradlew assembleDebug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
