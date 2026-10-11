@@ -23,10 +23,19 @@ jobs:
       uses: gradle/actions/setup-gradle@v3
 
     - name: Build Debug APK
-      run: gradle assembleDebug
+      # اگر نام پوشه شما چیز دیگری است، به جای AI-DashBoard3 نام آن را بنویسید
+      working-directory: .
+      run: |
+        if [ -f "settings.gradle.kts" ] || [ -f "settings.gradle" ]; then
+          gradle assembleDebug
+        else
+          # اگر کدها داخل پوشه فرعی هستند به آن پوشه رفته و اجرا می‌کند
+          cd $(find . -maxdepth 2 -name "settings.gradle.kts" -o -name "settings.gradle" | xargs -I {} dirname {})
+          gradle assembleDebug
+        fi
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
         name: app-debug
-        path: app/build/outputs/apk/debug/app-debug.apk
+        path: "**/app/build/outputs/apk/debug/app-debug.apk"
