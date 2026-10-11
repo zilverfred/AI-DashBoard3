@@ -22,22 +22,19 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
 
-    - name: Find Project Directory and Build
+    - name: Check Repository Files and Build
       run: |
-        # پیدا کردن مسیر فایل تنظیمات گرادل در پروژه
-        SETTINGS_FILE=$(find . -name "settings.gradle*" -not -path "*/.*" | head -n 1)
+        echo "=== Listing files in root directory ==="
+        ls -la
         
-        if [ -z "$SETTINGS_FILE" ]; then
-          echo "Error: settings.gradle or settings.gradle.kts not found!"
-          exit 1
+        echo "=== Listing files in app directory if exists ==="
+        if [ -d "app" ]; then
+          ls -la app
+        else
+          echo "WARNING: 'app' directory is missing!"
         fi
-        
-        # رفتن به پوشه‌ای که فایل تنظیمات در آن قرار دارد
-        PROJECT_DIR=$(dirname "$SETTINGS_FILE")
-        echo "Project directory found at: $PROJECT_DIR"
-        cd "$PROJECT_DIR"
-        
-        # اجرای بیلد مستقیم با گرادل
+
+        # اجرای بیلد
         gradle assembleDebug --no-daemon
 
     - name: Upload APK Artifact
