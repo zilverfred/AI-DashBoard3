@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dashboard 112</string>
+    <string name="app_subtitle">داشبورد هوشمند مدیریت روزانه</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_dashboard">داشبورد</string>
+    <string name="nav_tasks">کارها</string>
+    <string name="nav_workout">ورزش</string>
+    <string name="nav_finance">مالی</string>
+    <string name="nav_vehicle">خودرو</string>
+    <string name="nav_reports">گزارش‌ها</string>
+    <string name="nav_settings">تنظیمات</string>
+
+    <!-- Dashboard Cards -->
+    <string name="card_today_overview">نمای کلی امروز</string>
+    <string name="card_today_tasks">کارهای امروز</string>
+    <string name="card_workout">ورزش و سلامت</string>
+    <string name="card_finance">مدیریت مالی</string>
+    <string name="card_vehicle">وضعیت خودرو</string>
+    <string name="card_office">کار و اداره</string>
+    <string name="card_reminders">یادآوری‌ها</string>
+    <string name="card_sleep">خواب و استراحت</string>
+
+    <!-- Priorities & Statuses -->
+    <string name="priority_critical">ضروری</string>
+    <string name="priority_important">مهم</string>
+    <string name="priority_normal">عادی</string>
+    <string name="status_completed">انجام‌شده</string>
+    <string name="status_pending">در انتظار</string>
+    <string name="status_overdue">عقب‌افتاده</string>
+
+    <!-- Common Actions & Messages -->
+    <string name="action_add">افزودن مورد جدید</string>
+    <string name="action_edit">ویرایش</string>
+    <string name="action_delete">حذف</string>
+    <string name="action_confirm_delete">آیا از حذف این مورد اطمینان دارید؟</string>
+    <string name="action_cancel">انصراف</string>
+    <string name="action_save">ذخیره اطلاعات</string>
+    <string name="action_search_hint">جستجو در عنوان یا توضیحات...</string>
+    <string name="msg_saved_successfully">اطلاعات با موفقیت ذخیره شد</string>
+    <string name="msg_deleted_successfully">مورد انتخاب‌شده حذف شد</string>
+    <string name="msg_validation_empty_title">لطفاً عنوان را وارد کنید</string>
+    <string name="msg_validation_invalid_amount">مبلغ واردشده باید عددی بزرگ‌تر از صفر باشد</string>
+    <string name="msg_empty_state">هنوز موردی در این بخش ثبت نشده است</string>
+    <string name="backup_export_success">فایل پشتیبان با موفقیت استخراج شد</string>
+    <string name="backup_import_success">اطلاعات پشتیبان با موفقیت بازیابی شد</string>
+    <string name="notification_channel_name">یادآوری‌های Dashboard 112</string>
+    <string name="notification_channel_desc">اعلان‌های یادآوری روزانه، کارهای اداری و سرویس خودرو</string>
+</resources>
