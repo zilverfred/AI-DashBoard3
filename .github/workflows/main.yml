@@ -22,8 +22,23 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
 
-    - name: Build Debug APK
-      run: gradle assembleDebug --no-daemon
+    - name: Find Project Directory and Build
+      run: |
+        # پیدا کردن مسیر فایل تنظیمات گرادل در پروژه
+        SETTINGS_FILE=$(find . -name "settings.gradle*" -not -path "*/.*" | head -n 1)
+        
+        if [ -z "$SETTINGS_FILE" ]; then
+          echo "Error: settings.gradle or settings.gradle.kts not found!"
+          exit 1
+        fi
+        
+        # رفتن به پوشه‌ای که فایل تنظیمات در آن قرار دارد
+        PROJECT_DIR=$(dirname "$SETTINGS_FILE")
+        echo "Project directory found at: $PROJECT_DIR"
+        cd "$PROJECT_DIR"
+        
+        # اجرای بیلد مستقیم با گرادل
+        gradle assembleDebug --no-daemon
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
